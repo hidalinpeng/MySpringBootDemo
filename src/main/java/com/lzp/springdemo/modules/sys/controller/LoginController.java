@@ -12,10 +12,12 @@ import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Map;
 
@@ -25,8 +27,8 @@ import java.util.Map;
  * @author: lzp
  * @create: 2019-11-05 11:48
  **/
-@RestController
-public class LgoinController {
+@Controller
+public class LoginController {
     @Autowired
     private ILoginService loginService;
 
@@ -34,7 +36,7 @@ public class LgoinController {
      * 退出时get请求
      * @return
      */
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    @GetMapping(value = "/userlogin")
     public String login(){
         return "login";
     }
@@ -44,8 +46,8 @@ public class LgoinController {
      * @param map
      * @return
      */
-    @RequestMapping(value = "/login",method = RequestMethod.POST)
-    public R login(@RequestBody Map map){
+    @PostMapping(value = "/userlogin")
+    public String login(@RequestBody Map map){
         //添加用户认证信息
         Subject subject = SecurityUtils.getSubject();
         UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(
@@ -55,12 +57,12 @@ public class LgoinController {
         try {
             subject.login(usernamePasswordToken);
         } catch (AuthenticationException e) {
-            return R.error("用户名或密码错误,请重新输入");
+            e.printStackTrace();
         }
-        return R.ok();
+        return "login";
     }
 
-    @RequestMapping(value = "/index")
+    @RequestMapping(value = "/userindex")
     public String index(){
         return "index";
     }
@@ -68,7 +70,7 @@ public class LgoinController {
     /**
      *登出
      */
-    @RequestMapping(value = "/logout")
+    @RequestMapping(value = "/userlogout")
     public String logout(){
         return "logout";
     }

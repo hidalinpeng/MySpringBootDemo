@@ -1,4 +1,4 @@
-package com.lzp.springdemo.modules.sys.dao;
+package com.lzp.springdemo.modules.sys.repository;
 
 import com.lzp.springdemo.modules.sys.entity.SysUser;
 

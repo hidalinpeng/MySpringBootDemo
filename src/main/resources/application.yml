@@ -13,6 +13,6 @@ spring:
       charset: utf-8
       enabled: true
 server:
-  port: 8081
+  port: 9090
   servlet:
     context-path: /springboot

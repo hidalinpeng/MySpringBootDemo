@@ -19,7 +19,7 @@
         <mysql.version>5.1.38</mysql.version>
         <mybatisplus.spring.boot.version>1.0.5</mybatisplus.spring.boot.version>
         <mybatisplus.version>2.2.0</mybatisplus.version>
-        <shiro.version>1.4.0</shiro.version>
+        <shiro.version>1.7.0</shiro.version>
         <lombok.version>1.16.8</lombok.version>
 	</properties>
 
